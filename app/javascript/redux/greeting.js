@@ -8,7 +8,7 @@ export const getGreetings = () => (dispatch) => {
   fetch("/v1/greetings")
     .then((res) => res.json())
     .then((data) => {
-      dispatch({ type: GET_GREETINGS_SUCCES, payload: data.message });
+      dispatch({ type: GET_GREETINGS_SUCCES, payload: data.greeting });
     })
     .catch((err) => dispatch({ type: GET_GREETINGS_FAILED, payload: err }));
 };

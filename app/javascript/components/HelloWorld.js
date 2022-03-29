@@ -1,13 +1,19 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-class HelloWorld extends React.Component {
-  render() {
-    return <React.Fragment>Greeting: {this.props.greeting}</React.Fragment>;
-  }
-}
+import { getGreetings } from "../redux/greeting";
+const HelloWorld = () => {
+  const dispatch = useDispatch();
 
-HelloWorld.propTypes = {
-  greeting: PropTypes.string,
+  useEffect(() => {
+    dispatch(getGreetings());
+  }, [dispatch]);
+
+  const {
+    greeting: { greeting },
+  } = useSelector((state) => state.greetingsReducer);
+
+  return <p>{greeting}</p>;
 };
+
 export default HelloWorld;
